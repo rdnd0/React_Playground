@@ -1,15 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Toggle from "./components/Toggle";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -18,6 +14,14 @@ function App() {
         >
           Learn React
         </a>
+        <Toggle>
+          {({ on, toggle }) => (
+            <div>
+              {on && <h1>Toggle on!</h1>}
+              <button onClick={toggle}>show/hide</button>
+            </div>
+          )}
+        </Toggle>
       </header>
     </div>
   );
