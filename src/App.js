@@ -1,36 +1,20 @@
 import React, { Component } from "react";
+import { Spring } from "react-spring/renderprops";
+
 import "./App.css";
 import Toggle from "./components/Toggle";
+import SpringHello from "./components/SpringHello";
+import TransitionToggle from "./components/TransitionToggle";
 import User from "./components/User";
-import { UserContext } from "./components/UserContext";
-
-class UserProvider extends Component {
-  state = {
-    name: "Dave",
-    surname: "Round",
-    email: "dave@round.com"
-  };
-
-  logout = () => {
-    this.setState({
-      name: "",
-      surname: "",
-      email: ""
-    });
-  };
-  render() {
-    return (
-      <UserContext.Provider value={{ user: this.state, logout: this.logout }}>
-        {this.props.children}
-      </UserContext.Provider>
-    );
-  }
-}
+import UserProvider from "./components/UserProvider";
 
 class App extends Component {
   render() {
     return (
       <UserProvider>
+        <div style={absolute}>
+          <SpringHello />
+        </div>
         <div className="App">
           <header className="App-header">
             <a
@@ -43,14 +27,7 @@ class App extends Component {
             </a>
             <div>
               <User />
-              <Toggle>
-                {({ on, toggle }) => (
-                  <div>
-                    {on && <h1>Toggle on!</h1>}
-                    <button onClick={toggle}>show/hide</button>
-                  </div>
-                )}
-              </Toggle>
+              <TransitionToggle />
             </div>
           </header>
         </div>
@@ -58,5 +35,11 @@ class App extends Component {
     );
   }
 }
+
+const absolute = {
+  position: "absolute",
+  backgroundColor: "white",
+  width: "100%"
+};
 
 export default App;
