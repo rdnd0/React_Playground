@@ -6,6 +6,8 @@ import Modal from "./components/Modal";
 import Toggle from "./components/Toggle";
 import SpringHello from "./components/SpringHello";
 import TransitionToggle from "./components/TransitionToggle";
+import AltTransitionToggle from "./components/AltTransitionToggle";
+
 import User from "./components/User";
 import UserProvider from "./components/UserProvider";
 
@@ -43,6 +45,9 @@ class App extends Component {
               <User />
             </div>
           </header>
+          <div>
+            <AltTransitionToggle />
+          </div>
         </div>
       </UserProvider>
     );

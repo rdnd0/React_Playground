@@ -3,27 +3,26 @@ import { Transition } from "react-spring/renderprops";
 
 import Toggle from "./Toggle";
 
-export default function TransitionToggle() {
+export default function AltTransitionToggle() {
   return (
     <Toggle>
       {({ on, toggle }) => (
-        <div>
+        <div onClick={toggle} style={{ minHeight: "50px" }}>
           <Transition
             items={on}
-            from={{ opacity: 0 }}
-            enter={{ opacity: 1 }}
-            leave={{ opacity: 0 }}
+            from={{ position: "absolute", overflow: "hidden", height: 0 }}
+            enter={[{ height: "auto" }]}
+            leave={{ height: 0 }}
           >
             {on =>
-              on &&
+              !on &&
               (props => (
                 <div style={props}>
-                  <h1>Toggle on!</h1>
+                  <h1>Hello!</h1>
                 </div>
               ))
             }
           </Transition>
-          <button onClick={toggle}>show/hide</button>
         </div>
       )}
     </Toggle>
