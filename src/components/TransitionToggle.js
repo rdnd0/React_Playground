@@ -10,15 +10,17 @@ export default function TransitionToggle() {
         <div>
           <Transition
             items={on}
-            from={{ opacity: 0 }}
-            enter={{ opacity: 1 }}
-            leave={{ opacity: 0 }}
+            from={{ opacity: 0, value: 0 }}
+            enter={{ opacity: 1, value: 10 }}
+            leave={{ opacity: 0, value: 0 }}
+            config={{ duration: 1000, delay: 1000 }}
           >
             {on =>
               on &&
               (props => (
                 <div style={props}>
                   <h1>Toggle on!</h1>
+                  <h1>{props.value.toFixed()}</h1>
                 </div>
               ))
             }

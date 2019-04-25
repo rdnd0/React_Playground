@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Transition } from "react-spring/renderprops";
+
 import Portal from "./Portal";
 
 export default class Modal extends Component {
@@ -6,14 +8,36 @@ export default class Modal extends Component {
     const { on, toggle, children } = this.props;
     return (
       <Portal>
-        <div style={mainWrapper} onClick={toggle}>
-          <div style={window}>
-            {children}
-            <button style={button} onClick={toggle}>
-              X
-            </button>
-          </div>
-        </div>
+        <Transition
+          items={on}
+          config={{ tension: 260, friction: 60 }}
+          from={{ opacity: 0, y: -100 }}
+          enter={{ opacity: 1, y: 0 }}
+          leave={{ opacity: 0, y: 100 }}
+        >
+          {on =>
+            on &&
+            (props => (
+              <div style={mainWrapper} onClick={toggle}>
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    padding: "5rem",
+                    borderRadius: "1rem",
+                    position: "relative",
+                    transform: `translate3D(0, ${props.y}px , 0)`,
+                    opacity: `${props.opacity}`
+                  }}
+                >
+                  <div>{children}</div>
+                  <button style={button} onClick={toggle}>
+                    X
+                  </button>
+                </div>
+              </div>
+            ))
+          }
+        </Transition>
       </Portal>
     );
   }

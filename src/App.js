@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Spring } from "react-spring/renderprops";
 
 import "./App.css";
 import Modal from "./components/Modal";
@@ -7,7 +6,7 @@ import Toggle from "./components/Toggle";
 import SpringHello from "./components/SpringHello";
 import TransitionToggle from "./components/TransitionToggle";
 import AltTransitionToggle from "./components/AltTransitionToggle";
-
+import Drag from "./components/Drag";
 import User from "./components/User";
 import UserProvider from "./components/UserProvider";
 
@@ -23,23 +22,14 @@ class App extends Component {
             <Toggle>
               {({ on, toggle }) => (
                 <div>
-                  {on && (
-                    <Modal on={on} toggle={toggle}>
-                      Beautiful little orange screen
-                    </Modal>
-                  )}
+                  <Modal on={on} toggle={toggle}>
+                    Beautiful little orange screen
+                  </Modal>
                   <button onClick={toggle}>Show</button>
                 </div>
               )}
             </Toggle>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
+            <Drag />
             <div>
               <TransitionToggle />
               <User />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Transition } from "react-spring/renderprops";
+import { Transition, animated } from "react-spring/renderprops";
 
 import Toggle from "./Toggle";
 
@@ -9,6 +9,8 @@ export default function AltTransitionToggle() {
       {({ on, toggle }) => (
         <div onClick={toggle} style={{ minHeight: "50px" }}>
           <Transition
+            native
+            config={{ tension: 260, friction: 100 }}
             items={on}
             from={{ position: "absolute", overflow: "hidden", height: 0 }}
             enter={[{ height: "auto" }]}
@@ -17,9 +19,9 @@ export default function AltTransitionToggle() {
             {on =>
               !on &&
               (props => (
-                <div style={props}>
+                <animated.div style={props}>
                   <h1>Hello!</h1>
-                </div>
+                </animated.div>
               ))
             }
           </Transition>
