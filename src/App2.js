@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 
 import ToggleHooks from "./components2/ToggleHooks";
+import Counter from "./components2/Counter";
 
 export default function App2() {
   const initialState = "";
   const [name, setName] = useState(initialState);
   return (
     <div>
+      <Counter />
       <ToggleHooks>
         {({ on, toggle }) => (
           <div>
